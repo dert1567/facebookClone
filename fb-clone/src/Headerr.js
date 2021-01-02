@@ -12,9 +12,14 @@ import AddIcon from '@material-ui/icons/Add';
 import ForumIcon from '@material-ui/icons/Forum';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useStateValue } from './StateProvider';
 
 
 function Header() {
+
+const [{user}, dispatch] = useStateValue();
+
+
     return (
         <div className="header">
             <div className="header__left">
@@ -23,13 +28,15 @@ function Header() {
                     alt="" />
                 <div className="header__input">
                     <SearchIcon />
-                    <input type="text" />
+                    <input placeholder="Search Facebook" type="text" />
                 </div>
             </div>
 
             <div className="header__middle">
 
-                <div className="header__option">
+                <div className="header__option
+                header__option--active"
+                >
                     <HomeIcon fontSize="lage" />
 
                 </div>
@@ -58,8 +65,8 @@ function Header() {
 
             <div className="header__right">
                 <div className="header__info">
-                    <Avatar />
-                    <h4>Daniel R</h4>
+                    <Avatar src={user.photoURL}/>
+                    <h4>{user.displayName}</h4>
                 </div>
 
                 <IconButton>
